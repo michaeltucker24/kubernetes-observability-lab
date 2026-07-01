@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-observability-demo
+  labels:
+    app: nginx-observability-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-observability-demo
+  template:
+    metadata:
+      labels:
+        app: nginx-observability-demo
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
